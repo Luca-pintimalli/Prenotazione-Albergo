@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "xfxK7l8N1OT2buEImqvPINnoTVMxaCZY+lT3z5feOXuwcuLBL/53As95V/TAHTRYDFB3YlZUDySgJBdDFFebcg==",
+  "dgSpecHash": "atIe1kmjv8qr3YzPrurnFr2p9QIgCbeCKVngEJK5cO9NPBu+pRoyhpn2MPPzGkY3b/vh3ZYo6/Kn+R88WQiekw==",
   "success": true,
-  "projectFilePath": "/Users/lucapintimalli/Documents/GitHub/Albergo/Albergo/Albergo.csproj",
+  "projectFilePath": "/Users/lucapintimalli/Documents/GitHub/BW-Backend-U1/BW-Backend-U1/BW_U_1/BW_U_1/Prenotazione-Albergo/Albergo/Albergo/Albergo.csproj",
   "expectedPackageFiles": [
     "/Users/lucapintimalli/.nuget/packages/microsoft.netcore.platforms/3.1.0/microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "/Users/lucapintimalli/.nuget/packages/microsoft.win32.registry/4.7.0/microsoft.win32.registry.4.7.0.nupkg.sha512",

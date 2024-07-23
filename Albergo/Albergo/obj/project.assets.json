@@ -475,11 +475,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/lucapintimalli/Documents/GitHub/Albergo/Albergo/Albergo.csproj",
+      "projectUniqueName": "/Users/lucapintimalli/Documents/GitHub/BW-Backend-U1/BW-Backend-U1/BW_U_1/BW_U_1/Prenotazione-Albergo/Albergo/Albergo/Albergo.csproj",
       "projectName": "Albergo",
-      "projectPath": "/Users/lucapintimalli/Documents/GitHub/Albergo/Albergo/Albergo.csproj",
+      "projectPath": "/Users/lucapintimalli/Documents/GitHub/BW-Backend-U1/BW-Backend-U1/BW_U_1/BW_U_1/Prenotazione-Albergo/Albergo/Albergo/Albergo.csproj",
       "packagesPath": "/Users/lucapintimalli/.nuget/packages/",
-      "outputPath": "/Users/lucapintimalli/Documents/GitHub/Albergo/Albergo/obj/",
+      "outputPath": "/Users/lucapintimalli/Documents/GitHub/BW-Backend-U1/BW-Backend-U1/BW_U_1/BW_U_1/Prenotazione-Albergo/Albergo/Albergo/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/lucapintimalli/.nuget/NuGet/NuGet.Config"
