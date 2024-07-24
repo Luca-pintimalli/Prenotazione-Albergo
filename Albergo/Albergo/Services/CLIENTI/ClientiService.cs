@@ -9,11 +9,11 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Albergo.Services.CLIENTI
 {
-	public class ClientiService : SqlServerServiceBase , IClientiService
-	{
-		public ClientiService(IConfiguration config) : base(config)
+    public class ClientiService : SqlServerServiceBase, IClientiService
+    {
+        public ClientiService(IConfiguration config) : base(config)
         {
-		}
+        }
 
         //eliminazione CLIENTE
         public void DeleteCliente(int ID)
@@ -163,24 +163,26 @@ namespace Albergo.Services.CLIENTI
                 throw e;
             }
         }
-    
+
 
         public void UpdateCliente(int ID, Cliente cliente)
         {
             try
             {
                 //CREO COMANDO 
-                var cmd = GetCommand("UPDATE Clienti SET Cognome = @Cognome, Nome = @Nome, Citta = @Citta, Provincia = @Provincia, Email = @Email, Telefono = @Telefono, Cellulare = @Cellulare WHERE ID = @ID");
+                var cmd = GetCommand("UPDATE Clienti SET Cognome = @Cognome, Nome = @Nome, Citta = @Citta, Provincia = @Provincia, Email = @Email, Telefono = @Telefono, Cellulare = @Cellulare, CodiceFiscale= @CodiceFiscale WHERE ID = @ID");
 
 
                 cmd.Parameters.Add(new SqlParameter("@ID", cliente.ID));
                 cmd.Parameters.Add(new SqlParameter("@Cognome", cliente.Cognome));
                 cmd.Parameters.Add(new SqlParameter("@Nome", cliente.Nome));
-                cmd.Parameters.Add(new SqlParameter("@Citta", cliente.Citta ));
+                cmd.Parameters.Add(new SqlParameter("@Citta", cliente.Citta));
                 cmd.Parameters.Add(new SqlParameter("@Provincia", cliente.Provincia));
-                cmd.Parameters.Add(new SqlParameter("@Email", cliente.Email ));
+                cmd.Parameters.Add(new SqlParameter("@Email", cliente.Email));
                 cmd.Parameters.Add(new SqlParameter("@Telefono", cliente.Telefono));
-                cmd.Parameters.Add(new SqlParameter("@Cellulare", cliente.Cellulare)); 
+                cmd.Parameters.Add(new SqlParameter("@Cellulare", cliente.Cellulare));
+                cmd.Parameters.Add(new SqlParameter("@CodiceFiscale", cliente.CodiceFiscale));
+
 
                 //GESTIONE CONNESIONE
                 var conn = GetConnection();
@@ -206,4 +208,3 @@ namespace Albergo.Services.CLIENTI
         }
     }
 }
-
