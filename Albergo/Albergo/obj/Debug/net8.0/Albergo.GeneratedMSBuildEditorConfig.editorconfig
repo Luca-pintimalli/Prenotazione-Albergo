@@ -18,6 +18,30 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = /Users/lucapintimalli/Documents/GitHub/BW-Backend-U1/BW-Backend-U1/BW_U_1/BW_U_1/Prenotazione-Albergo/Albergo/Albergo
 build_property._RazorSourceGeneratorDebug = 
 
+[/Users/lucapintimalli/Documents/GitHub/BW-Backend-U1/BW-Backend-U1/BW_U_1/BW_U_1/Prenotazione-Albergo/Albergo/Albergo/Views/Camere/Camere.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2FtZXJlL0NhbWVyZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/lucapintimalli/Documents/GitHub/BW-Backend-U1/BW-Backend-U1/BW_U_1/BW_U_1/Prenotazione-Albergo/Albergo/Albergo/Views/Camere/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2FtZXJlL0VkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/lucapintimalli/Documents/GitHub/BW-Backend-U1/BW-Backend-U1/BW_U_1/BW_U_1/Prenotazione-Albergo/Albergo/Albergo/Views/Camere/NewCamera.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2FtZXJlL05ld0NhbWVyYS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/lucapintimalli/Documents/GitHub/BW-Backend-U1/BW-Backend-U1/BW_U_1/BW_U_1/Prenotazione-Albergo/Albergo/Albergo/Views/Clienti/Clienti.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2xpZW50aS9DbGllbnRpLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/lucapintimalli/Documents/GitHub/BW-Backend-U1/BW-Backend-U1/BW_U_1/BW_U_1/Prenotazione-Albergo/Albergo/Albergo/Views/Clienti/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2xpZW50aS9FZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/lucapintimalli/Documents/GitHub/BW-Backend-U1/BW-Backend-U1/BW_U_1/BW_U_1/Prenotazione-Albergo/Albergo/Albergo/Views/Clienti/NewClienti.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2xpZW50aS9OZXdDbGllbnRpLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/lucapintimalli/Documents/GitHub/BW-Backend-U1/BW-Backend-U1/BW_U_1/BW_U_1/Prenotazione-Albergo/Albergo/Albergo/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9JbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

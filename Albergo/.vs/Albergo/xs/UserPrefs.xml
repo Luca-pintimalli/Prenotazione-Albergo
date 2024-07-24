@@ -1,0 +1,36 @@
+﻿<Properties StartupConfiguration="{6ED27BD4-BCB5-4FA7-9B71-09892C818C8D}|https">
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Albergo/Services/CAMERE/ICamereService.cs">
+    <Files>
+      <File FileName="Albergo/Models/Camere.cs" Line="21" Column="1" />
+      <File FileName="Albergo/Models/Camere/ICamere.cs" Line="6" Column="18" />
+      <File FileName="Albergo/Program.cs" Line="1" Column="1" />
+      <File FileName="Albergo/Services/ServiceBase.cs" Line="1" Column="1" />
+      <File FileName="Albergo/Controllers/CamereController.cs" Line="19" Column="2" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Albergo">
+            <Node name="Albergo">
+              <Node name="Controllers" expanded="True" />
+              <Node name="Models" expanded="True" />
+              <Node name="Properties" expanded="True" />
+              <Node name="Services" expanded="True">
+                <Node name="Camere" expanded="True">
+                  <Node name="ICamereService.cs" selected="True" />
+                </Node>
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.ItemProperties.Albergo PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MultiItemStartupConfigurations />
+</Properties>

@@ -1,0 +1,81 @@
+﻿@model IEnumerable<Camera>
+
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Camere Hotel";
+}
+
+<div class="text-center">
+    <h1>@ViewData["Title"]</h1>
+</div>
+
+@if (Model.Any())
+{
+    <table class="table table-borderless">
+        <thead>
+            <tr>
+                <th>Numero</th>
+                <th>Descrizione</th>
+                <th>Tipologia</th>
+                <th>Azione</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var a in Model)
+            {
+                <tr>
+                    <td>@a.Numero</td>
+                    <td>@a.Descrizione</td>
+                    <td>@a.Tipologia</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@a.Numero" class="btn btn-sm btn-warning">Modifica</a>
+                        <button class="btn btn-danger delete-button" data-id="@a.Numero">Elimina</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="row">
+        <div class="col alert alert-warning">Nessuna Camera</div>
+    </div>
+}
+
+<div class="row">
+    <div class="col">
+        <a asp-action="NewCamera" class="btn btn-primary">Nuova Camera</a>
+    </div>
+</div>
+
+
+
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.delete-button').on('click', function() {
+                var cameraId = $(this).data('id');
+                var row = $(this).closest('tr');
+                if (confirm('Sei sicuro di voler eliminare la camera?')) {
+                    $.ajax({
+                        url: '@Url.Action("DeleteCamera")/' + cameraId,
+                        type: 'DELETE',
+                        success: function(result) {
+                            if (result.success) {
+                                row.remove();
+                            } else {
+                                alert('Errore durante l\'eliminazione della camera.');
+                            }
+                        },
+                        error: function() {
+                            alert('Errore durante l\'eliminazione della camera.');
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+}

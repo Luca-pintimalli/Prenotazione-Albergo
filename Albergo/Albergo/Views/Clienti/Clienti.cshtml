@@ -1,0 +1,83 @@
+﻿@model IEnumerable<Cliente>
+
+@{
+    ViewData["Title"] = "Elenco Clienti";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>
+    <a asp-action="NewClienti" class="btn btn-primary">Aggiungi Nuovo Cliente</a>
+</p>
+
+@if (Model.Any())
+{
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Codice Fiscale</th>
+                <th>Cognome</th>
+                <th>Nome</th>
+                <th>Città</th>
+                <th>Provincia</th>
+                <th>Email</th>
+                <th>Telefono</th>
+                <th>Cellulare</th>
+                <th>Azioni</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var cliente in Model)
+            {
+                <tr>
+                    <td>@cliente.CodiceFiscale</td>
+                    <td>@cliente.Cognome</td>
+                    <td>@cliente.Nome</td>
+                    <td>@cliente.Citta</td>
+                    <td>@cliente.Provincia</td>
+                    <td>@cliente.Email</td>
+                    <td>@cliente.Telefono</td>
+                    <td>@cliente.Cellulare</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@cliente.ID" class="btn btn-warning btn-sm">Modifica</a>
+                        <button class="btn btn-danger delete-button" data-id="@cliente.ID">Elimina</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="alert alert-warning">Nessun cliente trovato.</div>
+}
+
+
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.delete-button').on('click', function() {
+                var clienteId = $(this).data('id');
+                var row = $(this).closest('tr');
+                if (confirm('Sei sicuro di voler eliminare il cliente?')) {
+                    $.ajax({
+                        url: '@Url.Action("Delete")/' + clienteId,
+                        type: 'DELETE',
+                        success: function(result) {
+                            if (result.success) {
+                                row.remove();
+                            } else {
+                                alert('Errore durante l\'eliminazione del cliente.');
+                            }
+                        },
+                        error: function() {
+                            alert('Errore durante l\'eliminazione del cliente.');
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+}

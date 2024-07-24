@@ -1,7 +1,15 @@
-﻿var builder = WebApplication.CreateBuilder(args);
+﻿using Albergo.Models.Camere;
+using Albergo.Services.CLIENTI;
+
+var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<ICamereService, CamereService>();
+builder.Services.AddScoped<IClientiService, ClientiService>();
+
+
+
 
 var app = builder.Build();
 

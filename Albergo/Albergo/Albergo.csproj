@@ -13,8 +13,14 @@
   </ItemGroup>
   <ItemGroup>
     <None Remove="Services\" />
+    <None Remove="Views\Camere\" />
+    <None Remove="Views\Clienti\" />
+    <None Remove="Services\CLIENTI\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Services\" />
+    <Folder Include="Views\Camere\" />
+    <Folder Include="Views\Clienti\" />
+    <Folder Include="Services\CLIENTI\" />
   </ItemGroup>
 </Project>

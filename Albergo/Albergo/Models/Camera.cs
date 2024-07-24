@@ -3,10 +3,12 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Albergo.Models
 {
-	public class Camere
+	public class Camera
 	{
         [Key]
         public int Numero { get; set; }
+
+        public int ID { get; set; }
 
         [Required]
         [StringLength(100)]
