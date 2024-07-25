@@ -16,11 +16,15 @@
     <None Remove="Views\Camere\" />
     <None Remove="Views\Clienti\" />
     <None Remove="Services\CLIENTI\" />
+    <None Remove="Views\Prenotazione\" />
+    <None Remove="Views\Servizi\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Services\" />
     <Folder Include="Views\Camere\" />
     <Folder Include="Views\Clienti\" />
     <Folder Include="Services\CLIENTI\" />
+    <Folder Include="Views\Prenotazione\" />
+    <Folder Include="Views\Servizi\" />
   </ItemGroup>
 </Project>

@@ -1,0 +1,75 @@
+﻿@model IEnumerable<Servizio>
+
+@{
+    ViewData["Title"] = "Elenco Servizi";
+}
+
+
+
+<h1>@ViewData["Title"]</h1>
+
+
+<p>
+    <a asp-action="NewServizio" class="btn btn-primary">Aggiungi Nuovo Servizio</a>
+</p>
+
+
+
+@if (Model.Any())
+{
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+
+                <th>Nome</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var servizio in Model)
+            {
+                <tr>
+
+                    <td>@servizio.Nome</td>
+
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@servizio.Id" class="btn btn-warning btn-sm">Modifica</a>
+                        <button class="btn btn-danger delete-button" data-id="@servizio.Id">Elimina</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="alert alert-warning">Nessun Servizio trovato.</div>
+}
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('.delete-button').on('click', function() {
+            var servizioId = $(this).data('id');
+            var row = $(this).closest('tr');
+            if (confirm('Sei sicuro di voler eliminare il Servizio?')) {
+                $.ajax({
+                    url: '@Url.Action("Delete", "Servizi")/' + servizioId,
+                    type: 'DELETE',
+                    success: function(result) {
+                        if (result.success) {
+                            row.remove();
+                        } else {
+                            alert('Errore durante l\'eliminazione del servizio.');
+                        }
+                    },
+                    error: function() {
+                        alert('Errore durante l\'eliminazione del servizio.');
+                    }
+                });
+            }
+        });
+    });
+    </script>
+}

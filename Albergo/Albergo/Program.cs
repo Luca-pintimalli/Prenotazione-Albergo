@@ -1,5 +1,8 @@
-﻿using Albergo.Models.Camere;
+﻿using Albergo.Models;
+using Albergo.Models.Camere;
+using Albergo.Services;
 using Albergo.Services.CLIENTI;
+using Albergo.Services.Servizi;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +10,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<ICamereService, CamereService>();
 builder.Services.AddScoped<IClientiService, ClientiService>();
+builder.Services.AddScoped<IServiziService, ServiziService>();
+builder.Services.AddScoped<IPrenotazioniService, PrenotazioniService>();
+builder.Services.AddScoped<PrenotazioneForm>();
+
 
 
 
