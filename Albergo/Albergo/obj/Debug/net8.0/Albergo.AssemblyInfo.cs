@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Albergo")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6150324d43b68d71115da0a0287b1ca0dc47bd20")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+26ac9c1296f2e4daefbc0f5645f2d17f60cce119")]
 [assembly: System.Reflection.AssemblyProductAttribute("Albergo")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Albergo")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Albergo.Models;
 using Albergo.Models.Camere;
 using Albergo.Services;
@@ -20,8 +21,6 @@ namespace Albergo.Controllers
             _clientiService = clientiService ?? throw new ArgumentNullException(nameof(clientiService));
         }
 
-
-
         public IActionResult Prenotazioni()
         {
             var prenotazioni = _prenotazioniService.GetPrenotazioni();
@@ -29,39 +28,31 @@ namespace Albergo.Controllers
         }
 
         // GET: /Prenotazione/NewPrenotazione
+        [HttpGet]
         public IActionResult NewPrenotazione()
         {
-            var camere = _camereService.GetCamere();
-            var clienti = _clientiService.GetClienti();
-
             var model = new PrenotazioneForm
             {
-                Prenotazione = new Prenotazione(),
-                Camere = camere ?? new List<Camera>(),
-                Clienti = clienti ?? new List<Cliente>()
+                Clienti = _clientiService.GetClienti().ToList(),
+                Camere = _camereService.GetCamere().ToList(),
+                Prenotazione = new Prenotazione()
             };
-
             return View(model);
         }
 
-        // POST: /Prenotazione/Create
         [HttpPost]
-        public IActionResult Create(PrenotazioneForm model)
+        public IActionResult NewPrenotazione(PrenotazioneForm model)
         {
             if (ModelState.IsValid)
             {
                 _prenotazioniService.newPrenotazione(model.Prenotazione);
-                return RedirectToAction("Prenotazioni"); 
+                return RedirectToAction(nameof(Prenotazioni));
             }
 
-            // ricarico le liste se il modello non è valido
-            model.Camere = _camereService.GetCamere();
-            model.Clienti = _clientiService.GetClienti();
-
-            return View("NewPrenotazione", model);
+            // Ricarica le liste nel caso di un errore di validazione
+            model.Clienti = _clientiService.GetClienti().ToList();
+            model.Camere = _camereService.GetCamere().ToList();
+            return View(model);
         }
-
-
-       
     }
 }

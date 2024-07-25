@@ -93,37 +93,70 @@ namespace Albergo.Services
             }
         }
 
-        public IEnumerable<Prenotazione> GetPrenotazioni()
+        public IEnumerable<PrenotazioneDetails> GetPrenotazioni()
         {
             try
             {
-                //CREO COMANDO
-                var cmd = GetCommand("SELECT * FROM Prenotazioni");
+                var cmd = GetCommand(@"
+            SELECT 
+                p.ID, 
+                p.CodiceFiscale, 
+                p.NumeroCamera, 
+                p.DataPrenotazione, 
+                p.NumeroProgressivo, 
+                p.Anno, 
+                p.Dal, 
+                p.Al, 
+                p.Caparra, 
+                p.Tariffa, 
+                p.Dettagli, 
+                c.Nome AS NomeCliente, 
+                c.Cognome AS CognomeCliente,
+                cam.Numero AS NumeroCamera,
+                cam.Descrizione AS DescrizioneCamera
+            FROM 
+                Prenotazioni p
+            INNER JOIN 
+                Clienti c ON p.CodiceFiscale = c.CodiceFiscale
+            INNER JOIN 
+                Camere cam ON p.NumeroCamera = cam.Numero");
 
-                //COMANDO CONNESIONE
-                var conn = GetConnection();
-
-                //APERTURA
-                conn.Open();
-
-                //GESTIONE COMANDO
-                var reader = cmd.ExecuteReader();
-
-                var list = new List<Prenotazione>();
-                while (reader.Read())
-                    list.Add(Create(reader));
-
-                //CHIUSURA
-                conn.Close();
-
-                return list;
-
+                using (var conn = GetConnection())
+                {
+                    conn.Open();
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        var list = new List<PrenotazioneDetails>();
+                        while (reader.Read())
+                        {
+                            list.Add(new PrenotazioneDetails
+                            {
+                                ID = reader.GetInt32(reader.GetOrdinal("ID")),
+                                CodiceFiscale = reader.GetString(reader.GetOrdinal("CodiceFiscale")),
+                                NumeroCamera = reader.GetInt32(reader.GetOrdinal("NumeroCamera")),
+                                DataPrenotazione = reader.GetDateTime(reader.GetOrdinal("DataPrenotazione")),
+                                NumeroProgressivo = reader.GetInt32(reader.GetOrdinal("NumeroProgressivo")),
+                                Anno = reader.GetInt32(reader.GetOrdinal("Anno")),
+                                Dal = reader.GetDateTime(reader.GetOrdinal("Dal")),
+                                Al = reader.GetDateTime(reader.GetOrdinal("Al")),
+                                Caparra = reader.GetDecimal(reader.GetOrdinal("Caparra")),
+                                Tariffa = reader.GetDecimal(reader.GetOrdinal("Tariffa")),
+                                Dettagli = reader.GetString(reader.GetOrdinal("Dettagli")),
+                                NomeCliente = reader.GetString(reader.GetOrdinal("NomeCliente")),
+                                CognomeCliente = reader.GetString(reader.GetOrdinal("CognomeCliente")),
+                                DescrizioneCamera = reader.GetString(reader.GetOrdinal("DescrizioneCamera"))
+                            });
+                        }
+                        return list;
+                    }
+                }
             }
             catch (Exception e)
             {
-                throw e;
+                throw new Exception("Errore durante il recupero delle prenotazioni", e);
             }
         }
+
 
         public void newPrenotazione(Prenotazione prenotazione)
         {

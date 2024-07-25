@@ -8,7 +8,7 @@ namespace Albergo.Services
 		void newPrenotazione(Prenotazione prenotazione);
 
 		//INSERIMENTO PRENOTAZIONI
-		IEnumerable<Prenotazione> GetPrenotazioni();
+		IEnumerable<PrenotazioneDetails> GetPrenotazioni();
 
 		//SINGOLA PRENOTAZIONE
 		Prenotazione GetPrenotazione(int ID);
