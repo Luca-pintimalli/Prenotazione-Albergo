@@ -49,7 +49,13 @@
                     <td>@prenotazione.Al.ToShortDateString()</td>
                     <td>@prenotazione.Caparra</td>
                     <td>@prenotazione.Tariffa</td>
-                    <td>@prenotazione.Dettagli</td>
+                    <td>
+                        @prenotazione.Dettagli
+                </td>
+                <td>
+                    <a asp-action="EditPrenotazione" asp-route-id="@prenotazione.ID" class="btn btn-primary">Modifica</a>
+                    <button type="button" class="btn btn-danger delete-button" data-id="@prenotazione.ID">Elimina</button>
+                </td>
                 </tr>
             }
         </tbody>
@@ -61,3 +67,30 @@ else
 }
 
 
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.delete-button').on('click', function() {
+                var prenotazioneId = $(this).data('id');
+                var row = $(this).closest('tr');
+                if (confirm('Sei sicuro di voler eliminare la prenotazione?')) {
+                    $.ajax({
+                        url: '@Url.Action("DeletePrenotazione")/' + prenotazioneId,
+                        type: 'DELETE',
+                        success: function(result) {
+                            if (result.success) {
+                                row.remove();
+                            } else {
+                                alert('Errore durante l\'eliminazione della prenotazione.');
+                            }
+                        },
+                        error: function() {
+                            alert('Errore durante l\'eliminazione della prenotazione.');
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+}

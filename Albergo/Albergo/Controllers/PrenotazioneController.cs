@@ -54,5 +54,60 @@ namespace Albergo.Controllers
             model.Camere = _camereService.GetCamere().ToList();
             return View(model);
         }
+
+        [HttpDelete]
+        public IActionResult DeletePrenotazione(int id)
+        {
+            try
+            {
+                _prenotazioniService.DeletePrenotazione(id);
+                return Json(new { success = true });
+            }
+            catch (Exception)
+            {
+                return Json(new { success = false });
+            }
+        }
+
+        [HttpGet]
+        public IActionResult EditPrenotazione(int id)
+        {
+            var prenotazione = _prenotazioniService.GetPrenotazione(id);
+            if (prenotazione == null)
+            {
+                return NotFound();
+            }
+
+            var model = new PrenotazioneForm
+            {
+                Prenotazione = prenotazione,
+                Clienti = _clientiService.GetClienti().ToList(),
+                Camere = _camereService.GetCamere().ToList()
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult EditPrenotazione(PrenotazioneForm model)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _prenotazioniService.UpdatePrenotazione(model.Prenotazione.ID, model.Prenotazione);
+                    return RedirectToAction(nameof(Prenotazioni));
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("", "Errore durante l'aggiornamento della prenotazione: " + ex.Message);
+                }
+            }
+
+            model.Clienti = _clientiService.GetClienti().ToList();
+            model.Camere = _camereService.GetCamere().ToList();
+            return View(model);
+        }
     }
 }
+    

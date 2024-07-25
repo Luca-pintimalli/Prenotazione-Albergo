@@ -1,0 +1,68 @@
+﻿@model PrenotazioneForm
+
+@{
+    ViewData["Title"] = "Modifica Prenotazione";
+    Layout = "_Layout";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<form asp-action="EditPrenotazione" method="post">
+    <div class="form-group">
+        <label asp-for="Prenotazione.CodiceFiscale" class="control-label"></label>
+        <select asp-for="Prenotazione.CodiceFiscale" class="form-control" asp-items="@(new SelectList(Model.Clienti ?? new List<Cliente>(), "CodiceFiscale", "CodiceFiscale"))"></select>
+        <span asp-validation-for="Prenotazione.CodiceFiscale" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Prenotazione.NumeroCamera" class="control-label"></label>
+        <select asp-for="Prenotazione.NumeroCamera" class="form-control" asp-items="@(new SelectList(Model.Camere ?? new List<Camera>(), "Numero", "Numero"))"></select>
+        <span asp-validation-for="Prenotazione.NumeroCamera" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Prenotazione.DataPrenotazione" class="control-label"></label>
+        <input asp-for="Prenotazione.DataPrenotazione" class="form-control" />
+        <span asp-validation-for="Prenotazione.DataPrenotazione" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Prenotazione.NumeroProgressivo" class="control-label"></label>
+        <input asp-for="Prenotazione.NumeroProgressivo" class="form-control" />
+        <span asp-validation-for="Prenotazione.NumeroProgressivo" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Prenotazione.Anno" class="control-label"></label>
+        <input asp-for="Prenotazione.Anno" class="form-control" />
+        <span asp-validation-for="Prenotazione.Anno" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Prenotazione.Dal" class="control-label"></label>
+        <input asp-for="Prenotazione.Dal" class="form-control" />
+        <span asp-validation-for="Prenotazione.Dal" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Prenotazione.Al" class="control-label"></label>
+        <input asp-for="Prenotazione.Al" class="form-control" />
+        <span asp-validation-for="Prenotazione.Al" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Prenotazione.Caparra" class="control-label"></label>
+        <input asp-for="Prenotazione.Caparra" class="form-control" />
+        <span asp-validation-for="Prenotazione.Caparra" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Prenotazione.Tariffa" class="control-label"></label>
+        <input asp-for="Prenotazione.Tariffa" class="form-control" />
+        <span asp-validation-for="Prenotazione.Tariffa" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Prenotazione.Dettagli" class="control-label"></label>
+        <select asp-for="Prenotazione.Dettagli" class="form-control">
+            <option value="Mezza Pensione">Mezza Pensione</option>
+            <option value="Pensione Completa">Pensione Completa</option>
+            <option value="Pernottamento con Colazione">Pernottamento con Colazione</option>
+        </select>
+        <span asp-validation-for="Prenotazione.Dettagli" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Salva" class="btn btn-primary" />
+    </div>
+</form>
