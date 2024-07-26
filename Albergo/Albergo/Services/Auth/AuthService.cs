@@ -15,6 +15,7 @@ namespace Albergo.Services.Auth
 
         public Dipendenti Login(string nomeUtente, string password)
         {
+            
             try
             {
                 using var conn = GetConnection();

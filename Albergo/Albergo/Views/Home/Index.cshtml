@@ -1,14 +1,14 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 
-    var dipendenti = (User.Identity?.IsAuthenticated ?? false) ? User.Identity.Name : "Anonimo";
+    var dipendenti = (User.Identity?.IsAuthenticated ?? false) ? User.Identity.Name : "Accedi per poter utilizzare l'applicazione!";
 }
 
 
 
 
 <div class="text-center">
-    <h1 class="display-4">Welcome @dipendenti</h1>
+    <h1 class="display-4">Welcome, @dipendenti</h1>
     <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
 
