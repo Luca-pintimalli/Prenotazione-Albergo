@@ -4,10 +4,13 @@ using Albergo.Models;
 using Albergo.Models.Camere;
 using Albergo.Services;
 using Albergo.Services.CLIENTI;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Albergo.Controllers
 {
+    [Authorize]
+
     public class PrenotazioneController : Controller
     {
         private readonly IPrenotazioniService _prenotazioniService;
@@ -89,13 +92,13 @@ namespace Albergo.Controllers
         }
 
         [HttpPost]
-        public IActionResult EditPrenotazione(PrenotazioneForm model)
+        public IActionResult EditPrenotazione(int id,PrenotazioneForm model)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _prenotazioniService.UpdatePrenotazione(model.Prenotazione.ID, model.Prenotazione);
+                    _prenotazioniService.UpdatePrenotazione(id, model.Prenotazione);
                     return RedirectToAction(nameof(Prenotazioni));
                 }
                 catch (Exception ex)

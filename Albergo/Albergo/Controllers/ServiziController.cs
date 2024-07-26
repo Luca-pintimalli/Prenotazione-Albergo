@@ -2,11 +2,14 @@
 using Albergo.Models;
 using Albergo.Services.CLIENTI;
 using Albergo.Services.Servizi;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Albergo.Controllers
 {
-	public class ServiziController : Controller
+    [Authorize]
+
+    public class ServiziController : Controller
 	{
         private readonly ILogger<ServiziController> _logger;
         private readonly IServiziService _serviziService;

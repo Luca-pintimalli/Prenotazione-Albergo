@@ -1,8 +1,10 @@
 ﻿using Albergo.Models;
 using Albergo.Models.Camere;
 using Albergo.Services;
+using Albergo.Services.Auth;
 using Albergo.Services.CLIENTI;
 using Albergo.Services.Servizi;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,7 +16,15 @@ builder.Services.AddScoped<IServiziService, ServiziService>();
 builder.Services.AddScoped<IPrenotazioniService, PrenotazioniService>();
 builder.Services.AddScoped<PrenotazioneForm>();
 
+//CONF AUTENTICAZIONE
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(opt =>
+    {
+        opt.LoginPath = "/Account/Login";
+    });
 
+//CONF SERVIZIO DI GESTIONE AUTENTICAZIONE
+builder.Services.AddScoped<IAuthService, AuthService>();
 
 
 
@@ -32,6 +42,9 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

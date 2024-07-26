@@ -2,10 +2,13 @@
 using Albergo.Models;
 using Albergo.Models.Camere;
 using Albergo.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Albergo.Controllers
 {
+    [Authorize]
+
     public class CamereController : Controller
     {
         private readonly ILogger<CamereController> _logger;

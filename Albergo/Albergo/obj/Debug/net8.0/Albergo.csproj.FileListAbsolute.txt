@@ -76,3 +76,4 @@
 /Users/lucapintimalli/Documents/GitHub/Esame-Venerd-BE/Prenotazione-Albergo/Albergo/Albergo/obj/Debug/net8.0/Albergo.pdb
 /Users/lucapintimalli/Documents/GitHub/Esame-Venerd-BE/Prenotazione-Albergo/Albergo/Albergo/obj/Debug/net8.0/Albergo.genruntimeconfig.cache
 /Users/lucapintimalli/Documents/GitHub/Esame-Venerd-BE/Prenotazione-Albergo/Albergo/Albergo/obj/Debug/net8.0/ref/Albergo.dll
+/Users/lucapintimalli/Documents/GitHub/Esame-Venerd-BE/Prenotazione-Albergo/Albergo/Albergo/bin/Debug/net8.0/System.Security.Permissions.dll

@@ -18,6 +18,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = /Users/lucapintimalli/Documents/GitHub/Esame-Venerd-BE/Prenotazione-Albergo/Albergo/Albergo
 build_property._RazorSourceGeneratorDebug = 
 
+[/Users/lucapintimalli/Documents/GitHub/Esame-Venerd-BE/Prenotazione-Albergo/Albergo/Albergo/Views/Account/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWNjb3VudC9Mb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/lucapintimalli/Documents/GitHub/Esame-Venerd-BE/Prenotazione-Albergo/Albergo/Albergo/Views/Camere/Camere.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2FtZXJlL0NhbWVyZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
