@@ -17,11 +17,17 @@
     <a asp-action="NewPrenotazione" class="btn btn-primary">Aggiungi una nuova prenotazione</a>
 </p>
 
+<div>
+    <input type="text" id="searchCodiceFiscale" placeholder="Inserisci Codice Fiscale" />
+    <button id="searchButton" class="btn btn-primary">Cerca</button>
+</div>
+
+
 
 
 @if (Model.Any())
 {
-    <table class="table">
+    <table class="table" id="prenotazioniTable">
         <thead>
             <tr>
                 <th>ID</th>
@@ -73,11 +79,54 @@ else
 }
 
 
+<div id="alertMessage" class="alert alert-warning" style="display:none;">Nessun cliente trovato.</div>
+
+<div id="alertMessage" class="alert alert-warning" style="display:none;">Nessuna prenotazione trovata per il codice fiscale inserito.</div>
+
 @section Scripts {
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function() {
-            $('.delete-button').on('click', function() {
+            $('#searchButton').on('click', function() {
+                var codiceFiscale = $('#searchCodiceFiscale').val();
+                $.ajax({
+                    url: '@Url.Action("SearchPrenotazioniByCodiceFiscale", "Prenotazione")',
+                    type: 'GET',
+                    data: { codiceFiscale: codiceFiscale },
+                    success: function(result) {
+                        var tbody = $('#prenotazioniTable tbody');
+                        tbody.empty();
+                        if (result.length > 0) {
+                            $('#alertMessage').hide();
+                            $.each(result, function(index, prenotazione) {
+                                tbody.append('<tr>' +
+                                    '<td>' + prenotazione.id + '</td>' +
+                                    '<td>' + prenotazione.codiceFiscale + '</td>' +
+                                    '<td>' + prenotazione.numeroCamera + '</td>' +
+                                    '<td>' + new Date(prenotazione.dataPrenotazione).toLocaleDateString() + '</td>' +
+                                    '<td>' + prenotazione.numeroProgressivo + '</td>' +
+                                    '<td>' + prenotazione.anno + '</td>' +
+                                    '<td>' + new Date(prenotazione.dal).toLocaleDateString() + '</td>' +
+                                    '<td>' + new Date(prenotazione.al).toLocaleDateString() + '</td>' +
+                                    '<td>' + prenotazione.tariffa + '</td>' +
+                                    '<td>' + prenotazione.caparra + '</td>' +
+                                    '<td>' + (prenotazione.tariffa - prenotazione.caparra) + '</td>' +
+                                    '<td>' + prenotazione.dettagli + '</td>' +
+                                    '<td><a href="@Url.Action("EditPrenotazione")/' + prenotazione.id + '" class="btn btn-primary">Modifica</a>' +
+                                    '<button type="button" class="btn btn-danger delete-button" data-id="' + prenotazione.id + '">Elimina</button></td>' +
+                                '</tr>');
+                            });
+                        } else {
+                            $('#alertMessage').show();
+                        }
+                    },
+                    error: function() {
+                        alert('Errore durante la ricerca delle prenotazioni.');
+                    }
+                });
+            });
+
+            $('#prenotazioniTable').on('click', '.delete-button', function() {
                 var prenotazioneId = $(this).data('id');
                 var row = $(this).closest('tr');
                 if (confirm('Sei sicuro di voler eliminare la prenotazione?')) {

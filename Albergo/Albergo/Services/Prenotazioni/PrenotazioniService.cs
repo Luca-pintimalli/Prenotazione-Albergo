@@ -244,7 +244,66 @@ namespace Albergo.Services
             }
         }
 
-       
+
+        public IEnumerable<PrenotazioneDetails> GetPrenotazioniByCodiceFiscale(string codiceFiscale)
+        {
+            try
+            {
+                var cmd = GetCommand(@"
+            SELECT 
+                p.ID, 
+                p.CodiceFiscale, 
+                p.NumeroCamera, 
+                p.DataPrenotazione, 
+                p.NumeroProgressivo, 
+                p.Anno, 
+                p.Dal, 
+                p.Al, 
+                p.Caparra, 
+                p.Tariffa, 
+                p.Dettagli
+            FROM 
+                Prenotazioni p
+            WHERE 
+                p.CodiceFiscale = @CodiceFiscale");
+
+                cmd.Parameters.Add(new SqlParameter("@CodiceFiscale", codiceFiscale));
+
+                using (var conn = GetConnection())
+                {
+                    conn.Open();
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        var list = new List<PrenotazioneDetails>();
+                        while (reader.Read())
+                        {
+                            list.Add(new PrenotazioneDetails
+                            {
+                                ID = reader.GetInt32(reader.GetOrdinal("ID")),
+                                CodiceFiscale = reader.GetString(reader.GetOrdinal("CodiceFiscale")),
+                                NumeroCamera = reader.GetInt32(reader.GetOrdinal("NumeroCamera")),
+                                DataPrenotazione = reader.GetDateTime(reader.GetOrdinal("DataPrenotazione")),
+                                NumeroProgressivo = reader.GetInt32(reader.GetOrdinal("NumeroProgressivo")),
+                                Anno = reader.GetInt32(reader.GetOrdinal("Anno")),
+                                Dal = reader.GetDateTime(reader.GetOrdinal("Dal")),
+                                Al = reader.GetDateTime(reader.GetOrdinal("Al")),
+                                Caparra = reader.GetDecimal(reader.GetOrdinal("Caparra")),
+                                Tariffa = reader.GetDecimal(reader.GetOrdinal("Tariffa")),
+                                Dettagli = reader.GetString(reader.GetOrdinal("Dettagli"))
+                            });
+                        }
+                        return list;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Errore durante il recupero delle prenotazioni", e);
+            }
+        }
+
+
+
     }
 }
 

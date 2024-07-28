@@ -18,6 +18,9 @@ namespace Albergo.Services
 
 		//Eliminazione
 		void DeletePrenotazione(int ID);
-	}
+
+		IEnumerable<PrenotazioneDetails> GetPrenotazioniByCodiceFiscale(string codiceFiscale);
+
+    }
 }
 

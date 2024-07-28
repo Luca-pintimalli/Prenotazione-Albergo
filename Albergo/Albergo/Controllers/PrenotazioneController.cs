@@ -30,6 +30,15 @@ namespace Albergo.Controllers
             return View(prenotazioni);
         }
 
+        [HttpGet]
+        public IActionResult SearchPrenotazioniByCodiceFiscale(string codiceFiscale)
+        {
+            var prenotazioni = _prenotazioniService.GetPrenotazioniByCodiceFiscale(codiceFiscale);
+            return Json(prenotazioni);
+        }
+
+
+
         // GET: /Prenotazione/NewPrenotazione
         [HttpGet]
         public IActionResult NewPrenotazione()
