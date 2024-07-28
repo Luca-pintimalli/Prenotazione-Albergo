@@ -34,7 +34,6 @@ namespace Albergo.Controllers
             return View(new Cliente());
         }
 
-        // POST: Clienti/NewCliente
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult NewClienti(Cliente model)
@@ -47,7 +46,6 @@ namespace Albergo.Controllers
             return View(model);
         }
 
-        // GET: Clienti/Edit/5
         [HttpGet]
         public IActionResult Edit(int ID)
         {

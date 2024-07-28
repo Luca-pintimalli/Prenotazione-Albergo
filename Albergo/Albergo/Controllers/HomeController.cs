@@ -22,7 +22,7 @@ public class HomeController : Controller
 
 
 
-
+    //numero totale prenotazioni 
     [Authorize]
     [HttpGet]
     public IActionResult GetPrenotazioniCounts()

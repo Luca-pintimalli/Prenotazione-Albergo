@@ -25,6 +25,7 @@ namespace Albergo.Controllers
             return View();
         }
 
+        //gestione login
         [HttpPost]
         public async Task<IActionResult> Login(Dipendenti dipendenti)
         {
@@ -56,7 +57,7 @@ namespace Albergo.Controllers
             }
             catch (Exception ex)
             {
-                // Gestisci l'eccezione in modo appropriato
+                
                 ModelState.AddModelError(string.Empty, "Errore durante il login");
                 return View(dipendenti);
             }

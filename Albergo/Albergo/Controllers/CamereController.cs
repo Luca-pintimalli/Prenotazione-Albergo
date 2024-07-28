@@ -45,7 +45,7 @@ namespace Albergo.Controllers
             }
             return View(model);
         }
-        // GET: Camere/Edit/5
+       
         [HttpGet]
         public IActionResult Edit(int id)
         {
@@ -57,7 +57,6 @@ namespace Albergo.Controllers
             return View(camera);
         }
 
-        // POST: Camere/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Edit(int id, Camera model)
@@ -75,7 +74,7 @@ namespace Albergo.Controllers
             return View(model);
         }
 
-        // GET: Camere/Delete/5
+        
         [HttpDelete]
         public JsonResult DeleteCamera(int id)
         {
