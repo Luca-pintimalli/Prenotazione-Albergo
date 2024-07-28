@@ -1,23 +1,25 @@
-﻿@model Albergo.Models.PrenotazioneDetails
+﻿@model IEnumerable<PrenotazioneDetails>
 
 @{
+
     Layout = "_Layout";
     ViewData["Title"] = "Elenco Prenotazioni";
 }
 
+
+
+
 <h1>@ViewData["Title"]</h1>
 <p>Elenco delle prenotazioni</p>
+
 
 <p>
     <a asp-action="NewPrenotazione" class="btn btn-primary">Aggiungi una nuova prenotazione</a>
 </p>
 
-<p>Total Prenotazioni: @Model.TotalPrenotazioni</p>
-<p>Mezza Pensione: @Model.MezzaPensioneCount</p>
-<p>Pensione Completa: @Model.PensioneCompletaCount</p>
-<p>Pernottamento con Colazione: @Model.PernottamentoColazioneCount</p>
 
-@if (Model.Prenotazioni != null && Model.Prenotazioni.Any())
+
+@if (Model.Any())
 {
     <table class="table">
         <thead>
@@ -33,12 +35,12 @@
                 <th>Tariffa</th>
                 <th>Caparra</th>
                 <th>Totale da pagare</th>
+
                 <th>Dettagli</th>
-                <th>Azioni</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var prenotazione in Model.Prenotazioni)
+            @foreach (var prenotazione in Model)
             {
                 <tr>
                     <td>@prenotazione.ID</td>
@@ -52,7 +54,10 @@
                     <td>@prenotazione.Tariffa</td>
                     <td>@prenotazione.Caparra</td>
                     <td>@(prenotazione.Tariffa - prenotazione.Caparra)</td>
-                    <td>@prenotazione.Dettagli</td>
+
+                    <td>
+                        @prenotazione.Dettagli
+                    </td>
                     <td>
                         <a asp-action="EditPrenotazione" asp-route-id="@prenotazione.ID" class="btn btn-primary">Modifica</a>
                         <button type="button" class="btn btn-danger delete-button" data-id="@prenotazione.ID">Elimina</button>
@@ -66,6 +71,7 @@ else
 {
     <div class="alert alert-warning">Nessun cliente trovato.</div>
 }
+
 
 @section Scripts {
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

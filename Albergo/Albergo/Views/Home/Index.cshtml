@@ -7,8 +7,48 @@
 
 
 
+
+
+
 <div class="text-center">
     <h1 class="display-4">Welcome, @dipendenti</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
 </div>
 
+@if (User.Identity.IsAuthenticated)
+{
+    <div id="prenotazioni-counts">
+        <p>Total Prenotazioni: <span id="totalPrenotazioni"></span></p>
+        <p>Mezza Pensione: <span id="mezzaPensioneCount"></span></p>
+        <p>Pensione Completa: <span id="pensioneCompletaCount"></span></p>
+        <p>Pernottamento con Colazione: <span id="pernottamentoColazioneCount"></span></p>
+    </div>
+
+    @section Scripts {
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                function loadPrenotazioniCounts() {
+                    $.ajax({
+                        url: '@Url.Action("GetPrenotazioniCounts", "Home")',
+                        type: 'GET',
+                        success: function(result) {
+                            console.log(result); // Verifica i dati ricevuti
+
+                            // Assicurati che gli elementi HTML con gli ID corretti esistano
+                            $('#totalPrenotazioni').text(result.totalPrenotazioni);
+                            $('#mezzaPensioneCount').text(result.mezzaPensioneCount);
+                            $('#pensioneCompletaCount').text(result.pensioneCompletaCount);
+                            $('#pernottamentoColazioneCount').text(result.pernottamentoColazioneCount);
+                        },
+                        error: function() {
+                            alert('Errore durante il caricamento dei conteggi delle prenotazioni.');
+                        }
+                    });
+                }
+
+                loadPrenotazioniCounts();
+            });
+        </script>
+    }
+}

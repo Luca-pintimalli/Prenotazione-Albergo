@@ -18,6 +18,8 @@ builder.Services.AddScoped<IPrenotazioniService, PrenotazioniService>();
 builder.Services.AddScoped<PrenotazioneForm>();
 builder.Services.AddScoped<IServiziPrenotazioneService, ServiziPrenotazioneService>();
 builder.Services.AddScoped<ServizioPrenotazioneForm>();
+builder.Services.AddScoped<PrenotazioniService>();
+
 
 
 

@@ -1,16 +1,18 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Albergo.Models;
+using Albergo.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Albergo.Controllers;
 
 public class HomeController : Controller
 {
-    private readonly ILogger<HomeController> _logger;
+    private readonly PrenotazioniService _prenotazioniService;
 
-    public HomeController(ILogger<HomeController> logger)
+    public HomeController(PrenotazioniService prenotazioniService)
     {
-        _logger = logger;
+        _prenotazioniService = prenotazioniService;
     }
 
     public IActionResult Index()
@@ -18,7 +20,33 @@ public class HomeController : Controller
         return View();
     }
 
-    public IActionResult Privacy()
+
+
+
+    [Authorize]
+    [HttpGet]
+    public IActionResult GetPrenotazioniCounts()
+    {
+        var prenotazioni = _prenotazioniService.GetPrenotazioni();
+
+        var totalPrenotazioni = prenotazioni.Count();
+        var mezzaPensioneCount = prenotazioni.Count(p => p.Dettagli == "Mezza Pensione");
+        var pensioneCompletaCount = prenotazioni.Count(p => p.Dettagli == "Pensione Completa");
+        var pernottamentoColazioneCount = prenotazioni.Count(p => p.Dettagli == "Pernottamento con Colazione");
+
+        var counts = new
+        {
+            TotalPrenotazioni = totalPrenotazioni,
+            MezzaPensioneCount = mezzaPensioneCount,
+            PensioneCompletaCount = pensioneCompletaCount,
+            PernottamentoColazioneCount = pernottamentoColazioneCount
+        };
+
+        return Json(counts);
+    }
+
+
+public IActionResult Privacy()
     {
         return View();
     }
