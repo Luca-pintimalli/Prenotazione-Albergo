@@ -1,0 +1,38 @@
+﻿@model Albergo.Models.ServizioPrenotazioneForm
+
+@{
+    ViewData["Title"] = "Modifica Servizio Prenotazione";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<form asp-action="Edit">
+    <div class="form-group">
+        <label asp-for="ServizioPrenotazione.IDPrenotazione" class="control-label"></label>
+        <select asp-for="ServizioPrenotazione.IDPrenotazione" class="form-control" asp-items="@(new SelectList(Model.Prenotazioni, "ID", "ID"))"></select>
+        <span asp-validation-for="ServizioPrenotazione.IDPrenotazione" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ServizioPrenotazione.IDServizio" class="control-label"></label>
+        <select asp-for="ServizioPrenotazione.IDServizio" class="form-control" asp-items="@(new SelectList(Model.Servizi, "ID", "Nome"))"></select>
+        <span asp-validation-for="ServizioPrenotazione.IDServizio" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ServizioPrenotazione.Data" class="control-label"></label>
+        <input asp-for="ServizioPrenotazione.Data" class="form-control" />
+        <span asp-validation-for="ServizioPrenotazione.Data" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ServizioPrenotazione.Quantita" class="control-label"></label>
+        <input asp-for="ServizioPrenotazione.Quantita" class="form-control" />
+        <span asp-validation-for="ServizioPrenotazione.Quantita" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ServizioPrenotazione.Prezzo" class="control-label"></label>
+        <input asp-for="ServizioPrenotazione.Prezzo" class="form-control" />
+        <span asp-validation-for="ServizioPrenotazione.Prezzo" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Salva" class="btn btn-primary" />
+    </div>
+</form>

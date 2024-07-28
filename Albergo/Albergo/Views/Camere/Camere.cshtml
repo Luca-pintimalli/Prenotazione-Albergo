@@ -52,4 +52,30 @@ else
 
 
 
-c
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.delete-button').on('click', function() {
+                var cameraId = $(this).data('id');
+                var row = $(this).closest('tr');
+                if (confirm('Sei sicuro di voler eliminare la camera?')) {
+                    $.ajax({
+                        url: '@Url.Action("DeleteCamera")/' + cameraId,
+                        type: 'DELETE',
+                        success: function(result) {
+                            if (result.success) {
+                                row.remove();
+                            } else {
+                                alert('Errore durante l\'eliminazione della camera.');
+                            }
+                        },
+                        error: function() {
+                            alert('Errore durante l\'eliminazione della camera.');
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+}

@@ -23,6 +23,7 @@
     <None Remove="Services\SERVIZI\" />
     <None Remove="Services\Auth\" />
     <None Remove="Views\Account\" />
+    <None Remove="Views\ServizioPrenotazione\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Services\" />
@@ -35,5 +36,6 @@
     <Folder Include="Services\SERVIZI\" />
     <Folder Include="Services\Auth\" />
     <Folder Include="Views\Account\" />
+    <Folder Include="Views\ServizioPrenotazione\" />
   </ItemGroup>
 </Project>

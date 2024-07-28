@@ -4,6 +4,7 @@ using Albergo.Services;
 using Albergo.Services.Auth;
 using Albergo.Services.CLIENTI;
 using Albergo.Services.Servizi;
+using Albergo.Services.SERVIZI;
 using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,6 +16,10 @@ builder.Services.AddScoped<IClientiService, ClientiService>();
 builder.Services.AddScoped<IServiziService, ServiziService>();
 builder.Services.AddScoped<IPrenotazioniService, PrenotazioniService>();
 builder.Services.AddScoped<PrenotazioneForm>();
+builder.Services.AddScoped<IServiziPrenotazioneService, ServiziPrenotazioneService>();
+builder.Services.AddScoped<ServizioPrenotazioneForm>();
+
+
 
 //CONF AUTENTICAZIONE
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)

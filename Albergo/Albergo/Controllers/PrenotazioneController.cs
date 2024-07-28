@@ -10,7 +10,6 @@ using Microsoft.AspNetCore.Mvc;
 namespace Albergo.Controllers
 {
     [Authorize]
-
     public class PrenotazioneController : Controller
     {
         private readonly IPrenotazioniService _prenotazioniService;
@@ -27,10 +26,26 @@ namespace Albergo.Controllers
         public IActionResult Prenotazioni()
         {
             var prenotazioni = _prenotazioniService.GetPrenotazioni();
-            return View(prenotazioni);
+
+            // Calcolo dei conteggi
+            var totalPrenotazioni = prenotazioni.Count();
+            var mezzaPensioneCount = prenotazioni.Count(p => p.Dettagli == "Mezza Pensione");
+            var pensioneCompletaCount = prenotazioni.Count(p => p.Dettagli == "Pensione Completa");
+            var pernottamentoColazioneCount = prenotazioni.Count(p => p.Dettagli == "Pernottamento con Colazione");
+
+            var model = new PrenotazioneDetails
+            {
+                Prenotazioni = prenotazioni,
+                TotalPrenotazioni = totalPrenotazioni,
+                MezzaPensioneCount = mezzaPensioneCount,
+                PensioneCompletaCount = pensioneCompletaCount,
+                PernottamentoColazioneCount = pernottamentoColazioneCount
+            };
+
+            return View(model);
         }
 
-        // GET: /Prenotazione/NewPrenotazione
+
         [HttpGet]
         public IActionResult NewPrenotazione()
         {
@@ -52,7 +67,6 @@ namespace Albergo.Controllers
                 return RedirectToAction(nameof(Prenotazioni));
             }
 
-            // Ricarica le liste nel caso di un errore di validazione
             model.Clienti = _clientiService.GetClienti().ToList();
             model.Camere = _camereService.GetCamere().ToList();
             return View(model);
@@ -92,7 +106,7 @@ namespace Albergo.Controllers
         }
 
         [HttpPost]
-        public IActionResult EditPrenotazione(int id,PrenotazioneForm model)
+        public IActionResult EditPrenotazione(int id, PrenotazioneForm model)
         {
             if (ModelState.IsValid)
             {
@@ -113,4 +127,3 @@ namespace Albergo.Controllers
         }
     }
 }
-    

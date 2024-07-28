@@ -14,7 +14,7 @@ namespace Albergo.Services
             _connection = new SqlConnection(config.GetConnectionString("AppDb"));
 		}
 
-       
+
 
         protected override DbCommand GetCommand(string commandText)
         {
@@ -27,4 +27,3 @@ namespace Albergo.Services
         }
     }
 }
-

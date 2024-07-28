@@ -1,23 +1,23 @@
-﻿@model IEnumerable<PrenotazioneDetails>
+﻿@model Albergo.Models.PrenotazioneDetails
 
 @{
-
     Layout = "_Layout";
     ViewData["Title"] = "Elenco Prenotazioni";
 }
 
-
-
-
 <h1>@ViewData["Title"]</h1>
 <p>Elenco delle prenotazioni</p>
-
 
 <p>
     <a asp-action="NewPrenotazione" class="btn btn-primary">Aggiungi una nuova prenotazione</a>
 </p>
 
-@if (Model.Any())
+<p>Total Prenotazioni: @Model.TotalPrenotazioni</p>
+<p>Mezza Pensione: @Model.MezzaPensioneCount</p>
+<p>Pensione Completa: @Model.PensioneCompletaCount</p>
+<p>Pernottamento con Colazione: @Model.PernottamentoColazioneCount</p>
+
+@if (Model.Prenotazioni != null && Model.Prenotazioni.Any())
 {
     <table class="table">
         <thead>
@@ -30,13 +30,15 @@
                 <th>Anno</th>
                 <th>Dal</th>
                 <th>Al</th>
-                <th>Caparra</th>
                 <th>Tariffa</th>
+                <th>Caparra</th>
+                <th>Totale da pagare</th>
                 <th>Dettagli</th>
+                <th>Azioni</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var prenotazione in Model)
+            @foreach (var prenotazione in Model.Prenotazioni)
             {
                 <tr>
                     <td>@prenotazione.ID</td>
@@ -47,15 +49,14 @@
                     <td>@prenotazione.Anno</td>
                     <td>@prenotazione.Dal.ToShortDateString()</td>
                     <td>@prenotazione.Al.ToShortDateString()</td>
-                    <td>@prenotazione.Caparra</td>
                     <td>@prenotazione.Tariffa</td>
+                    <td>@prenotazione.Caparra</td>
+                    <td>@(prenotazione.Tariffa - prenotazione.Caparra)</td>
+                    <td>@prenotazione.Dettagli</td>
                     <td>
-                        @prenotazione.Dettagli
-                </td>
-                <td>
-                    <a asp-action="EditPrenotazione" asp-route-id="@prenotazione.ID" class="btn btn-primary">Modifica</a>
-                    <button type="button" class="btn btn-danger delete-button" data-id="@prenotazione.ID">Elimina</button>
-                </td>
+                        <a asp-action="EditPrenotazione" asp-route-id="@prenotazione.ID" class="btn btn-primary">Modifica</a>
+                        <button type="button" class="btn btn-danger delete-button" data-id="@prenotazione.ID">Elimina</button>
+                    </td>
                 </tr>
             }
         </tbody>
@@ -65,7 +66,6 @@ else
 {
     <div class="alert alert-warning">Nessun cliente trovato.</div>
 }
-
 
 @section Scripts {
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

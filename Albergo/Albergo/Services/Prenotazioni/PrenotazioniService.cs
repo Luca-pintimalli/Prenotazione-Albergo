@@ -43,7 +43,7 @@ namespace Albergo.Services
 
 
 
-        //CREAZIONE METODO CREATE PER L'AGGIUNTA DIUN NUOVO CLIENTE
+        //CREAZIONE METODO CREATE PER L'AGGIUNTA DI UNA NUOVA PRENOTAZIONE
         public Prenotazione Create(DbDataReader reader)
         {
             return new Prenotazione

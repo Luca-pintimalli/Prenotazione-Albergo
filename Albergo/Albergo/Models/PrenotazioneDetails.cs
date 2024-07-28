@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+
 namespace Albergo.Models
 {
-	public class PrenotazioneDetails
-	{
+    public class PrenotazioneDetails
+    {
         public int ID { get; set; }
         public string CodiceFiscale { get; set; }
         public string NomeCliente { get; set; }
@@ -17,6 +19,10 @@ namespace Albergo.Models
         public decimal Caparra { get; set; }
         public decimal Tariffa { get; set; }
         public string Dettagli { get; set; }
+        public int TotalPrenotazioni { get; set; }
+        public int MezzaPensioneCount { get; set; }
+        public int PensioneCompletaCount { get; set; }
+        public int PernottamentoColazioneCount { get; set; }
+        public IEnumerable<PrenotazioneDetails> Prenotazioni { get; set; }
     }
 }
-

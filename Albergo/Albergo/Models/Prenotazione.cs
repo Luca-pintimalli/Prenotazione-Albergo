@@ -14,6 +14,9 @@ namespace Albergo.Models
         public decimal Caparra { get; set; }
         public decimal Tariffa { get; set; }
         public string Dettagli { get; set; }
+
+       
+
     }
 }
 
